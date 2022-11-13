@@ -1,0 +1,27 @@
+{
+  "name": "zarobank_cypress_test_automation",
+  "version": "1.0.0",
+  "description": "Zero Bank Component and E2E testing",
+  "main": "index.js",
+  "scripts": {
+    "cypress:runner": "cypress open",
+    "cypress:execution":"cypress run",
+    "runOnChrome":"cypress run browser --chrome"
+  },
+  "keywords": [
+    "BDD",
+    "Cucumber"
+  ],
+  "author": "nyamat allah",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^14.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+    "cypress": "^11.0.1",
+    "cypress-esbuild-preprocessor": "^1.0.2",
+    "esbuild": "^0.15.13",
+    "@shelex/cypress-allure-plugin": "^2.33.1",
+    "multiple-cucumber-html-reporter": "^3.0.1"
+
+  }
+}
