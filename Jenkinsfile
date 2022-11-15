@@ -3,12 +3,8 @@ pipeline {
     agent any
 
     parameters{
-        string(name: 'Feature', defaultValue: "cypress/e2e/**/*.feature", descrition: "Specifiy the feature file path that needs to be executed")
-        choice(name: 'Browser', choices['chrome', 'edge', 'firefox'], defaultValue: 'chrome', descrition: "Select the browser in which the tests must be run")
-    }
-
-    options{
-        ansiColor('xterm')
+        string(name: 'Feature', defaultValue: "cypress/e2e/**/*.feature", description: "Specifiy the feature file path that needs to be executed")
+        choice(name: 'Browser', choices: ['chrome', 'edge', 'firefox'], description: "Select the browser in which the tests must be run")
     }
 
     stages{
@@ -26,12 +22,12 @@ pipeline {
             }
         }
 
-        stage('Deploying')(
+        stage('Deploying'){
             steps{
                 echo "Deploying Application"
             }
             
-        )
+        }
     }
 
     post{
