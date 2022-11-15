@@ -33,8 +33,13 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/**/*.feature",
     baseUrl: "http://zero.webappsecurity.com/",
-    chromeWebSecurity: false
+    chromeWebSecurity: false,
+    watchForFileChanges: true
   },
+  
+  "env": {
+    //"TAGS": "@Focus"
+},
 
   projectId :  "96nq4b"
   
