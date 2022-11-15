@@ -29,11 +29,4 @@ pipeline {
             
         }
     }
-
-    post{
-        always{
-            publishHTML([alowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,  reportDir: 'cypress/report', reportFiles:'index.html', reportNam: 'HTML Report', reportTitles: ''])
-        }
-    }
-
 }
