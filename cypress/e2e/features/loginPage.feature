@@ -11,9 +11,13 @@ Background:
         When User enters "username" and "password"
         When Clicks on Sign in
         Then Home page is loaded
-
-    Scenario: user is unable to login with in correct credentials
-        When User enters "uname" and "pass"
+        
+    Scenario: user is unable to login with incorrect credentials
+        When User enters incorrect credentials
+        | username | password |
+        | username | pasword  |
+        | uname    | pwd      |
+        | xyz      | 123      |
         When Clicks on Sign in
         Then Error message should be displayed
 
@@ -42,7 +46,6 @@ Background:
         When user enters "2829dfza" and clicks on submit
         Then Password sent to the "2829dfza" message should not be dislpayed
 
-    @Focus
     Scenario Outline: User clicks on the "<link>", they should be redirected to correct page
         When user clicks on "<link>"
         Then user should be redirected to correct "<page>"

@@ -2,7 +2,6 @@ import {
   Given,
   When,
   Then,
-  And
 } from "@badeball/cypress-cucumber-preprocessor";
 const loginPage = require("../../pages/loginPage.js");
 
@@ -44,6 +43,12 @@ When("user clicks on {string}",(link) => {
       footerlink.click()
     }
   })
+})
+
+When("User enters incorrect credentials", (DataTable) => {
+  DataTable.hashes().forEach(credential => {
+    loginPage.fillUsernameAndPassord(credential.username, credential.password) 
+  });
 })
 
 Then("Home page is loaded", () => {
