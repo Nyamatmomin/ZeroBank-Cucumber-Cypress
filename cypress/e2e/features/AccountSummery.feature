@@ -5,8 +5,17 @@ Feature: Accounts Summery of the user
     redirected to correct Page after clicking on the links.
 
 Background: 
-    Given User opens Sign In Page
-    Given User clicks on Accounts Summery link
+    Given User logs in into ZeroBank using "username" and "password"
+    When User clicks on Accounts Summery link
 
     Scenario: User should see all the account types that user has on the Accounts Summery Page
+        Then User should see 
+        | Accounts |
+        | Cash Accounts | 
+        | Investment Accounts |
+        | Credit Accounts |
+        | Loan Accounts |
+
+    Scenario: Each Account should show the associated balance
+        Then User should see Correct Balance for each Account
     

@@ -9,6 +9,13 @@ Given("User opens Sign In Page", () => {
   loginPage.launchZeroBankApp()
 })
 
+Given("User logs in into ZeroBank using {string} and {string}", (username, password) =>{
+  loginPage.launchZeroBankApp()
+  loginPage.fillUsernameAndPassord(username, password)
+  loginPage.clickSignIn()
+
+})
+
 When("User enters {string} and {string}", (username, password) => {
   loginPage.fillUsernameAndPassord(username, password)  
 })

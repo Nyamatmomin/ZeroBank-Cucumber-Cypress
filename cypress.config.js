@@ -5,6 +5,8 @@ const addCucumberPreprocessorPlugin =
 const createEsbuildPlugin =
   require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 const allureWriter = require("@shelex/cypress-allure-plugin/writer");
+const xlsx = require("xlsx");
+const { esbuildPreprocessorAdapter } = require("cypress-esbuild-preprocessor");
 
 //If using this approach, just call the key "setupNodeEvents" in the E2E configurations
 // async function setupNodeEvents(on, config) {
@@ -29,20 +31,41 @@ module.exports = defineConfig({
       await addCucumberPreprocessorPlugin(on, config);
       allureWriter(on, config);
 
+      on("task", {
+        generateJSONFromExcel: generateJSONFromExcel,
+        getSheetNames: getSheetNames,
+      });
+
       return config;
     },
     specPattern: "cypress/e2e/**/*.feature",
     baseUrl: "http://zero.webappsecurity.com/",
     chromeWebSecurity: false,
-    watchForFileChanges: true,
+    watchForFileChanges: false,
     "video": false
   },
   
   "env": {
     // "TAGS": "@Focus"
-    "TAGS": "not @Ignore"
+   // "TAGS": "not @Ignore"
 },
+
+// retries : { openMode : 2,
+//             runMode : 1},
 
   projectId :  "96nq4b"
   
 });
+
+
+function generateJSONFromExcel(agrs) {
+  const wb = xlsx.readFile(agrs.excelFilePath, {dateNF: "mm/dd/yyyy"});
+  const ws = wb.Sheets[agrs.sheet];
+  return xlsx.utils.sheet_to_json(ws, {raw: true});
+}
+
+function getSheetNames(agrs) {
+  const wb = xlsx.readFile(agrs.excelFilePath, {dateNF: "mm/dd/yyyy"});
+  const sheets =  wb.SheetNames
+  return sheets
+}
